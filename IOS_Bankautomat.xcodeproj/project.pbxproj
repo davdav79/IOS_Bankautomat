@@ -7,26 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		073CA5C92861E58C00B6964C /* Views in Resources */ = {isa = PBXBuildFile; fileRef = 073CA5C82861E58C00B6964C /* Views */; };
-		5F2BFE81285B568400952C7E /* IOS_BankautomatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2BFE80285B568400952C7E /* IOS_BankautomatApp.swift */; };
+		073CA5CB2861EC3C00B6964C /* IOS_BankautomatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073CA5CA2861EC3C00B6964C /* IOS_BankautomatApp.swift */; };
+		073CA5DA2861EF0B00B6964C /* Einzahlung.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073CA5D82861EF0B00B6964C /* Einzahlung.swift */; };
+		073CA5DB2861EF0B00B6964C /* Auszahlung.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073CA5D92861EF0B00B6964C /* Auszahlung.swift */; };
+		073CA5DD2861EF5D00B6964C /* PinAendern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073CA5DC2861EF5D00B6964C /* PinAendern.swift */; };
+		073CA5DF2861EF7C00B6964C /* Ueberweisung.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073CA5DE2861EF7C00B6964C /* Ueberweisung.swift */; };
+		073CA5E12861EF8900B6964C /* Kontostand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073CA5E02861EF8900B6964C /* Kontostand.swift */; };
+		073CA5E32861EF9900B6964C /* KontoAuszug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073CA5E22861EF9900B6964C /* KontoAuszug.swift */; };
+		073CA5E52861EFA700B6964C /* PinAbfrage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073CA5E42861EFA700B6964C /* PinAbfrage.swift */; };
 		5F2BFE83285B568400952C7E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2BFE82285B568400952C7E /* ContentView.swift */; };
 		5F2BFE85285B568600952C7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F2BFE84285B568600952C7E /* Assets.xcassets */; };
 		5F2BFE88285B568600952C7E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F2BFE87285B568600952C7E /* Preview Assets.xcassets */; };
 		5F2BFE8A285B568600952C7E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2BFE89285B568600952C7E /* Persistence.swift */; };
 		5F2BFE8D285B568600952C7E /* IOS_Bankautomat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5F2BFE8B285B568600952C7E /* IOS_Bankautomat.xcdatamodeld */; };
-		5F2BFE942861EB8E00952C7E /* Auszahlung.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2BFE932861EB8E00952C7E /* Auszahlung.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		073CA5C82861E58C00B6964C /* Views */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Views; sourceTree = "<group>"; };
+		073CA5CA2861EC3C00B6964C /* IOS_BankautomatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOS_BankautomatApp.swift; sourceTree = "<group>"; };
+		073CA5D82861EF0B00B6964C /* Einzahlung.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Einzahlung.swift; sourceTree = "<group>"; };
+		073CA5D92861EF0B00B6964C /* Auszahlung.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auszahlung.swift; sourceTree = "<group>"; };
+		073CA5DC2861EF5D00B6964C /* PinAendern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinAendern.swift; sourceTree = "<group>"; };
+		073CA5DE2861EF7C00B6964C /* Ueberweisung.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ueberweisung.swift; sourceTree = "<group>"; };
+		073CA5E02861EF8900B6964C /* Kontostand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kontostand.swift; sourceTree = "<group>"; };
+		073CA5E22861EF9900B6964C /* KontoAuszug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KontoAuszug.swift; sourceTree = "<group>"; };
+		073CA5E42861EFA700B6964C /* PinAbfrage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinAbfrage.swift; sourceTree = "<group>"; };
 		5F2BFE7D285B568400952C7E /* IOS_Bankautomat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOS_Bankautomat.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5F2BFE80285B568400952C7E /* IOS_BankautomatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOS_BankautomatApp.swift; sourceTree = "<group>"; };
 		5F2BFE82285B568400952C7E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5F2BFE84285B568600952C7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F2BFE87285B568600952C7E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5F2BFE89285B568600952C7E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		5F2BFE8C285B568600952C7E /* IOS_Bankautomat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IOS_Bankautomat.xcdatamodel; sourceTree = "<group>"; };
-		5F2BFE932861EB8E00952C7E /* Auszahlung.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auszahlung.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +50,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		073CA5E82861F21B00B6964C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				073CA5DC2861EF5D00B6964C /* PinAendern.swift */,
+				073CA5D92861EF0B00B6964C /* Auszahlung.swift */,
+				073CA5D82861EF0B00B6964C /* Einzahlung.swift */,
+				073CA5DE2861EF7C00B6964C /* Ueberweisung.swift */,
+				073CA5E02861EF8900B6964C /* Kontostand.swift */,
+				073CA5E22861EF9900B6964C /* KontoAuszug.swift */,
+				073CA5E42861EFA700B6964C /* PinAbfrage.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		5F2BFE74285B568400952C7E = {
 			isa = PBXGroup;
 			children = (
@@ -59,14 +83,13 @@
 		5F2BFE7F285B568400952C7E /* IOS_Bankautomat */ = {
 			isa = PBXGroup;
 			children = (
-				073CA5C82861E58C00B6964C /* Views */,
-				5F2BFE80285B568400952C7E /* IOS_BankautomatApp.swift */,
+				073CA5CA2861EC3C00B6964C /* IOS_BankautomatApp.swift */,
 				5F2BFE82285B568400952C7E /* ContentView.swift */,
 				5F2BFE84285B568600952C7E /* Assets.xcassets */,
 				5F2BFE89285B568600952C7E /* Persistence.swift */,
 				5F2BFE8B285B568600952C7E /* IOS_Bankautomat.xcdatamodeld */,
+				073CA5E82861F21B00B6964C /* View */,
 				5F2BFE86285B568600952C7E /* Preview Content */,
-				5F2BFE932861EB8E00952C7E /* Auszahlung.swift */,
 			);
 			path = IOS_Bankautomat;
 			sourceTree = "<group>";
@@ -137,7 +160,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				073CA5C92861E58C00B6964C /* Views in Resources */,
 				5F2BFE88285B568600952C7E /* Preview Assets.xcassets in Resources */,
 				5F2BFE85285B568600952C7E /* Assets.xcassets in Resources */,
 			);
@@ -151,10 +173,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F2BFE8A285B568600952C7E /* Persistence.swift in Sources */,
-				5F2BFE942861EB8E00952C7E /* Auszahlung.swift in Sources */,
+				073CA5DA2861EF0B00B6964C /* Einzahlung.swift in Sources */,
+				073CA5DF2861EF7C00B6964C /* Ueberweisung.swift in Sources */,
+				073CA5E12861EF8900B6964C /* Kontostand.swift in Sources */,
 				5F2BFE8D285B568600952C7E /* IOS_Bankautomat.xcdatamodeld in Sources */,
 				5F2BFE83285B568400952C7E /* ContentView.swift in Sources */,
-				5F2BFE81285B568400952C7E /* IOS_BankautomatApp.swift in Sources */,
+				073CA5DD2861EF5D00B6964C /* PinAendern.swift in Sources */,
+				073CA5E52861EFA700B6964C /* PinAbfrage.swift in Sources */,
+				073CA5CB2861EC3C00B6964C /* IOS_BankautomatApp.swift in Sources */,
+				073CA5E32861EF9900B6964C /* KontoAuszug.swift in Sources */,
+				073CA5DB2861EF0B00B6964C /* Auszahlung.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

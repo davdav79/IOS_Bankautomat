@@ -12,44 +12,50 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Konto.timestamp, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Item>
+    private var items: FetchedResults<Konto>
 
     var body: some View {
         NavigationView {
             List {
-                /*ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
-                }
-                .onDelete(perform: deleteItems)*/
                 NavigationLink{
                     Auszahlung()
                 } label: {
-                    Text("test")
+                    Text("Auszahlung")
+                }
+                NavigationLink{
+                    Einzahlung()
+                } label: {
+                    Text("Einzahlung")
+                }
+                NavigationLink{
+                    Ueberweisung()
+                } label: {
+                    Text("Überweisung")
+                }
+                NavigationLink{
+                    Kontostand()
+                } label: {
+                    Text("Kontostand Abfrage")
+                }
+                NavigationLink{
+                    KontoAuszug()
+                } label: {
+                    Text("Kontoauszug")
+                }
+                NavigationLink{
+                    PinAendern()
+                } label: {
+                    Text("Pin ändern")
                 }
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-            Text("Select an item")
         }
     }
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(context: viewContext)
+            let newItem = Konto(context: viewContext)
             newItem.timestamp = Date()
 
             do {
