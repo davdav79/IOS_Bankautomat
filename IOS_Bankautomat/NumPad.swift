@@ -89,7 +89,7 @@ struct NumPad: View {
                         useStr.removeLast()}
                 }) {
                     Text("C").frame(width: 80, height: 80)
-                }.background(.gray)
+                }.background(.yellow)
                     .foregroundColor(.black)
                     .shadow(radius: 5)
                 Button(action: {
@@ -102,11 +102,12 @@ struct NumPad: View {
                 Button(action: {
                     if(test(useStr))
                     {
+                        print("num pad if")
                         testDone = true
                     }
                 }) {
-                    Text("B").frame(width: 80, height: 80)
-                }.background(.gray)
+                    Text("OK").frame(width: 80, height: 80)
+                }.background(.green)
                     .foregroundColor(.black)
                     .shadow(radius: 5)
             }

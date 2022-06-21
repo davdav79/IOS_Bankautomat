@@ -26,7 +26,7 @@ struct PinAbfrage: View{
                 pinStrToUse.removeFirst()
                 inputPin.append(Int(element) ?? -1)
             }
-            
+            print("after for")
             if(pin == inputPin)
             {
                 return true
@@ -48,9 +48,7 @@ struct PinAbfrage: View{
                 nextView
             }else{
                 VStack{
-                    HStack(){
-                        Text("\(pinInput)")
-                    }
+                    Text("\(pinInput)").tracking(20).multilineTextAlignment(.center).frame(width: UIScreen.main.bounds.width/100*50).padding().border(.black).background(.gray)
                     NumPad(useStr: $pinInput, testDone: $next, test: TestPin, appendStr: AppendStr)
                 }
             }
