@@ -20,34 +20,107 @@ struct PinAbfrage: View{
                 nextView
             }else{
                 VStack{
-                    if(pinInput.count == 4){
-                        Text("\(pinInput[0])\(pinInput[1])\(pinInput[2])\(pinInput[3])")
-                    }
-                HStack(){
-                    Button("1") {
-                        if(pinInput.count < 4){
-                            pinInput.append(1)
+                    HStack(){
+                        ForEach(pinInput, id: \.self){
+                            value in Text("\(value)")
                         }
-                            
-                    }.padding()
-                        .background(.gray)
-                        .foregroundColor(.black)
-                        .shadow(radius: 5)
-                    Button("2") {
-                        pinInput.append(2)
-                    }.padding()
-                        .background(.gray)
-                        .foregroundColor(.black)
-                        .shadow(radius: 5)
-                    Button("3") {
-                        pinInput.append(3)
-                    }.padding()
-                        .background(.gray)
-                        .foregroundColor(.black)
-                        .shadow(radius: 5)
-                    
-                }
-                    
+                    }
+                    HStack(){
+                        Button(action: {if(pinInput.count < 4){
+                            pinInput.append(1)
+                        }}) {
+                            Text("1").frame(width: 80, height: 80)
+                        }.background(.gray)
+                            .foregroundColor(.black)
+                            .shadow(radius: 5)
+                        Button(action: {if(pinInput.count < 4){
+                            pinInput.append(2)
+                        }}) {
+                            Text("2").frame(width: 80, height: 80)
+                        }.background(.gray)
+                            .foregroundColor(.black)
+                            .shadow(radius: 5)
+                        Button(action: {if(pinInput.count < 4){
+                            pinInput.append(3)
+                        }}) {
+                            Text("3").frame(width: 80, height: 80)
+                        }.background(.gray)
+                            .foregroundColor(.black)
+                            .shadow(radius: 5)
+                    }
+                    HStack(){
+                        Button(action: {if(pinInput.count < 4){
+                            pinInput.append(4)
+                        }}) {
+                            Text("4").frame(width: 80, height: 80)
+                        }.background(.gray)
+                            .foregroundColor(.black)
+                            .shadow(radius: 5)
+                        Button(action: {if(pinInput.count < 4){
+                            pinInput.append(5)
+                        }}) {
+                            Text("5").frame(width: 80, height: 80)
+                        }.background(.gray)
+                            .foregroundColor(.black)
+                            .shadow(radius: 5)
+                        Button(action: {if(pinInput.count < 4){
+                            pinInput.append(6)
+                        }}) {
+                            Text("6").frame(width: 80, height: 80)
+                        }.background(.gray)
+                            .foregroundColor(.black)
+                            .shadow(radius: 5)
+                    }
+                    HStack(){
+                        Button(action: {if(pinInput.count < 4){
+                            pinInput.append(7)
+                        }}) {
+                            Text("7").frame(width: 80, height: 80)
+                        }.background(.gray)
+                            .foregroundColor(.black)
+                            .shadow(radius: 5)
+                        Button(action: {if(pinInput.count < 4){
+                            pinInput.append(8)
+                        }}) {
+                            Text("8").frame(width: 80, height: 80)
+                        }.background(.gray)
+                            .foregroundColor(.black)
+                            .shadow(radius: 5)
+                        Button(action: {if(pinInput.count < 4){
+                            pinInput.append(9)
+                        }}) {
+                            Text("9").frame(width: 80, height: 80)
+                        }.background(.gray)
+                            .foregroundColor(.black)
+                            .shadow(radius: 5)
+                    }
+                    HStack(){
+                        Button(action: {if(pinInput.count > 0){
+                            pinInput.removeLast()
+                        }}) {
+                            Text("C").frame(width: 80, height: 80)
+                        }.background(.gray)
+                            .foregroundColor(.black)
+                            .shadow(radius: 5)
+                        Button(action: {if(pinInput.count < 4){
+                            pinInput.append(0)
+                        }}) {
+                            Text("0").frame(width: 80, height: 80)
+                        }.background(.gray)
+                            .foregroundColor(.black)
+                            .shadow(radius: 5)
+                        Button(action: {if(pinInput.count == 4){
+                            let pin = Kontos[0].pin
+                            if (pinInput == (pin ?? [0])){ // Prüfe ob Pin geladen wurde. Vergleiche dann mit eingegebenen PIN
+                                self.next = true
+                            }
+                        }}) {
+                            Text("B").frame(width: 80, height: 80)
+                        }.background(.gray)
+                            .foregroundColor(.black)
+                            .shadow(radius: 5)
+                            .disabled(pinInput.count != 4)
+                    }
                 }
             }
         }
