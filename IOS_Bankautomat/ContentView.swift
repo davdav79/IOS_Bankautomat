@@ -9,55 +9,67 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.managedObjectContext) var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Konto.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Transaktion.timestamp, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Konto>
-
+    private var items: FetchedResults<Transaktion>
+    @FetchRequest(
+        sortDescriptors: [])
+    private var items2: FetchedResults<Konto>
     var body: some View {
-        NavigationView {
-            List {
-                NavigationLink{
-                    Auszahlung()
-                } label: {
-                    Text("Auszahlung")
-                }
-                NavigationLink{
-                    Einzahlung()
-                } label: {
-                    Text("Einzahlung")
-                }
-                NavigationLink{
-                    Ueberweisung()
-                } label: {
-                    Text("Überweisung")
-                }
-                NavigationLink{
-                    Kontostand()
-                } label: {
-                    Text("Kontostand Abfrage")
-                }
-                NavigationLink{
-                    KontoAuszug()
-                } label: {
-                    Text("Kontoauszug")
-                }
-                NavigationLink{
-                    PinAendern()
-                } label: {
-                    Text("Pin ändern")
+        VStack{
+            /*Button(action:addItem){
+                Text("add Item")
+            }*/
+            NavigationView {
+                List {
+                    NavigationLink{
+                        PinAbfrage(nextView: AnyView(Auszahlung()))
+                    } label: {
+                        Text("Auszahlung")
+                    }
+                    NavigationLink{
+                        Einzahlung()
+                    } label: {
+                        Text("Einzahlung")
+                    }
+                    NavigationLink{
+                        Ueberweisung()
+                    } label: {
+                        Text("Überweisung")
+                    }
+                    NavigationLink{
+                        Kontostand()
+                    } label: {
+                        Text("Kontostand Abfrage")
+                    }
+                    NavigationLink{
+                        KontoAuszug()
+                    } label: {
+                        Text("Kontoauszug")
+                    }
+                    NavigationLink{
+                        PinAendern()
+                    } label: {
+                        Text("Pin ändern")
+                    }
                 }
             }
+            /*ForEach(items){ konto in
+                Text(konto.iban!, formatter: itemFormatter)
+            }*/
         }
     }
 
     private func addItem() {
         withAnimation {
             let newItem = Konto(context: viewContext)
-            newItem.timestamp = Date()
-
+            newItem.pin = [1,2,3,4]
+            newItem.iban = "1234567890"
+            newItem.stand = 0
+            newItem.dispogrenze = 400
             do {
                 try viewContext.save()
             } catch {
@@ -69,10 +81,10 @@ struct ContentView: View {
         }
     }
 
-    private func deleteItems(offsets: IndexSet) {
+    /*private func deleteItems() {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
+            items.forEach(viewContext.delete)
+            items2.forEach(viewContext.delete)
             do {
                 try viewContext.save()
             } catch {
@@ -82,7 +94,7 @@ struct ContentView: View {
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
-    }
+    }*/
 }
 
 private let itemFormatter: DateFormatter = {
