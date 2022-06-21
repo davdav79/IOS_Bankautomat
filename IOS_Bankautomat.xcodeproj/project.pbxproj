@@ -14,6 +14,7 @@
 		5F2BFE88285B568600952C7E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F2BFE87285B568600952C7E /* Preview Assets.xcassets */; };
 		5F2BFE8A285B568600952C7E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2BFE89285B568600952C7E /* Persistence.swift */; };
 		5F2BFE8D285B568600952C7E /* IOS_Bankautomat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5F2BFE8B285B568600952C7E /* IOS_Bankautomat.xcdatamodeld */; };
+		5F2BFE942861EB8E00952C7E /* Auszahlung.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2BFE932861EB8E00952C7E /* Auszahlung.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		5F2BFE87285B568600952C7E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5F2BFE89285B568600952C7E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		5F2BFE8C285B568600952C7E /* IOS_Bankautomat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IOS_Bankautomat.xcdatamodel; sourceTree = "<group>"; };
+		5F2BFE932861EB8E00952C7E /* Auszahlung.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auszahlung.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				5F2BFE89285B568600952C7E /* Persistence.swift */,
 				5F2BFE8B285B568600952C7E /* IOS_Bankautomat.xcdatamodeld */,
 				5F2BFE86285B568600952C7E /* Preview Content */,
+				5F2BFE932861EB8E00952C7E /* Auszahlung.swift */,
 			);
 			path = IOS_Bankautomat;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F2BFE8A285B568600952C7E /* Persistence.swift in Sources */,
+				5F2BFE942861EB8E00952C7E /* Auszahlung.swift in Sources */,
 				5F2BFE8D285B568600952C7E /* IOS_Bankautomat.xcdatamodeld in Sources */,
 				5F2BFE83285B568400952C7E /* ContentView.swift in Sources */,
 				5F2BFE81285B568400952C7E /* IOS_BankautomatApp.swift in Sources */,
