@@ -19,14 +19,19 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(items) { item in
+                /*ForEach(items) { item in
                     NavigationLink {
                         Text("Item at \(item.timestamp!, formatter: itemFormatter)")
                     } label: {
                         Text(item.timestamp!, formatter: itemFormatter)
                     }
                 }
-                .onDelete(perform: deleteItems)
+                .onDelete(perform: deleteItems)*/
+                NavigationLink{
+                    Auszahlung()
+                } label: {
+                    Text("test")
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
