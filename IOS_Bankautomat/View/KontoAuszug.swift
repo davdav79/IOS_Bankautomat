@@ -8,8 +8,42 @@
 import SwiftUI
 
 struct KontoAuszug: View {
+    @State var useStr : String = "";
+    @State var testDone : Bool = false;
+    
+    func AppendStr (number:Int, useStr: inout String) -> Void{
+        if(useStr.count < 4)
+        {
+            useStr.append(contentsOf: "\(number)")
+            return
+        }
+        else
+        {
+            return
+        }
+    }
+    
+    func TestStr (useStr:String) -> Bool{
+        if (useStr.count == 4)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
     var body: some View {
-        Text("Kontoauszug")
+        VStack{
+            Text("Kontoauszug")
+            Text("Test: \(useStr)")
+            if(testDone)
+            {
+                Text("Yeah")
+            }
+            NumPad(useStr: $useStr, testDone: $testDone, test: TestStr, appendStr: AppendStr)
+        }
     }
 }
 

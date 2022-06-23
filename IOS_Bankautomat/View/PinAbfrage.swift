@@ -11,9 +11,37 @@ struct PinAbfrage: View{
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: []) private var Kontos: FetchedResults<Konto>
     
-    @State var pinInput: [Int] = []
     var nextView: AnyView
+    @State var pinInput: String = ""
     @State var next = false
+    
+    func TestPin (pinStr:String) -> Bool{
+        if(pinStr.count == 4)
+        {
+            var pinStrToUse = pinStr
+            let pin = Kontos[0].pin ?? [0]
+            var inputPin : [Int] = []
+            for _ in 0...3{
+                let element = pinStrToUse.prefix(1)
+                pinStrToUse.removeFirst()
+                inputPin.append(Int(element) ?? -1)
+            }
+            
+            if(pin == inputPin)
+            {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func AppendStr(number:Int, useStr: inout String) -> Void
+    {
+        if(useStr.count < 4){
+            useStr.append(contentsOf: "\(number)")
+        }
+    }
+    
     var body: some View {
         VStack{
             if(next){
@@ -21,106 +49,9 @@ struct PinAbfrage: View{
             }else{
                 VStack{
                     HStack(){
-                        ForEach(pinInput, id: \.self){
-                            value in Text("\(value)")
-                        }
+                        Text("\(pinInput)")
                     }
-                    HStack(){
-                        Button(action: {if(pinInput.count < 4){
-                            pinInput.append(1)
-                        }}) {
-                            Text("1").frame(width: 80, height: 80)
-                        }.background(.gray)
-                            .foregroundColor(.black)
-                            .shadow(radius: 5)
-                        Button(action: {if(pinInput.count < 4){
-                            pinInput.append(2)
-                        }}) {
-                            Text("2").frame(width: 80, height: 80)
-                        }.background(.gray)
-                            .foregroundColor(.black)
-                            .shadow(radius: 5)
-                        Button(action: {if(pinInput.count < 4){
-                            pinInput.append(3)
-                        }}) {
-                            Text("3").frame(width: 80, height: 80)
-                        }.background(.gray)
-                            .foregroundColor(.black)
-                            .shadow(radius: 5)
-                    }
-                    HStack(){
-                        Button(action: {if(pinInput.count < 4){
-                            pinInput.append(4)
-                        }}) {
-                            Text("4").frame(width: 80, height: 80)
-                        }.background(.gray)
-                            .foregroundColor(.black)
-                            .shadow(radius: 5)
-                        Button(action: {if(pinInput.count < 4){
-                            pinInput.append(5)
-                        }}) {
-                            Text("5").frame(width: 80, height: 80)
-                        }.background(.gray)
-                            .foregroundColor(.black)
-                            .shadow(radius: 5)
-                        Button(action: {if(pinInput.count < 4){
-                            pinInput.append(6)
-                        }}) {
-                            Text("6").frame(width: 80, height: 80)
-                        }.background(.gray)
-                            .foregroundColor(.black)
-                            .shadow(radius: 5)
-                    }
-                    HStack(){
-                        Button(action: {if(pinInput.count < 4){
-                            pinInput.append(7)
-                        }}) {
-                            Text("7").frame(width: 80, height: 80)
-                        }.background(.gray)
-                            .foregroundColor(.black)
-                            .shadow(radius: 5)
-                        Button(action: {if(pinInput.count < 4){
-                            pinInput.append(8)
-                        }}) {
-                            Text("8").frame(width: 80, height: 80)
-                        }.background(.gray)
-                            .foregroundColor(.black)
-                            .shadow(radius: 5)
-                        Button(action: {if(pinInput.count < 4){
-                            pinInput.append(9)
-                        }}) {
-                            Text("9").frame(width: 80, height: 80)
-                        }.background(.gray)
-                            .foregroundColor(.black)
-                            .shadow(radius: 5)
-                    }
-                    HStack(){
-                        Button(action: {if(pinInput.count > 0){
-                            pinInput.removeLast()
-                        }}) {
-                            Text("C").frame(width: 80, height: 80)
-                        }.background(.gray)
-                            .foregroundColor(.black)
-                            .shadow(radius: 5)
-                        Button(action: {if(pinInput.count < 4){
-                            pinInput.append(0)
-                        }}) {
-                            Text("0").frame(width: 80, height: 80)
-                        }.background(.gray)
-                            .foregroundColor(.black)
-                            .shadow(radius: 5)
-                        Button(action: {if(pinInput.count == 4){
-                            let pin = Kontos[0].pin
-                            if (pinInput == (pin ?? [0])){ // Prüfe ob Pin geladen wurde. Vergleiche dann mit eingegebenen PIN
-                                self.next = true
-                            }
-                        }}) {
-                            Text("B").frame(width: 80, height: 80)
-                        }.background(.gray)
-                            .foregroundColor(.black)
-                            .shadow(radius: 5)
-                            .disabled(pinInput.count != 4)
-                    }
+                    NumPad(useStr: $pinInput, testDone: $next, test: TestPin, appendStr: AppendStr)
                 }
             }
         }
