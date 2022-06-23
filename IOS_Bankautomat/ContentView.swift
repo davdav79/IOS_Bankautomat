@@ -51,7 +51,7 @@ struct ContentView: View {
                         Text("Kontoauszug")
                     }
                     NavigationLink{
-                        PinAendern()
+                        PinAbfrage(nextView: AnyView(PinAendern()))
                     } label: {
                         Text("Pin ändern")
                     }
