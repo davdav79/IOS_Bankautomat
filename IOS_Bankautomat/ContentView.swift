@@ -41,7 +41,7 @@ struct ContentView: View {
                         Text("Überweisung")
                     }
                     NavigationLink{
-                        Kontostand()
+                        PinAbfrage(nextView: AnyView(Kontostand()))
                     } label: {
                         Text("Kontostand Abfrage")
                     }

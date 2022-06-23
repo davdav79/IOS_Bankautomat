@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Einzahlung: View {
+    @State var betrag : Int = 0
     var body: some View {
         Text("Einzahlung")
     }

@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct Kontostand: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(sortDescriptors: []) private var Kontos: FetchedResults<Konto>
+    
     var body: some View {
-        Text("Kontostand")
+        VStack{
+            Text("Kontostand")
+            Text("\(Kontos[0].stand)")
+        }
     }
 }
 
