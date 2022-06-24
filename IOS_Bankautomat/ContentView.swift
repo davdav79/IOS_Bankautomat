@@ -20,9 +20,9 @@ struct ContentView: View {
     private var items2: FetchedResults<Konto>
     var body: some View {
         VStack{
-            /*Button(action:addItem){
+            Button(action:addItem){
                 Text("add Item")
-            }*/
+            }
             NavigationView {
                 List {
                     NavigationLink{
@@ -57,9 +57,9 @@ struct ContentView: View {
                     }
                 }
             }
-            /*ForEach(items){ konto in
-                Text(konto.iban!, formatter: itemFormatter)
-            }*/
+            ForEach(items2){ konto in
+                Text("\(konto.iban!)")
+            }
         }
     }
 

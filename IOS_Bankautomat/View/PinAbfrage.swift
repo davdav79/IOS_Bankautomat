@@ -19,14 +19,21 @@ struct PinAbfrage: View{
         if(pinStr.count == 4)
         {
             var pinStrToUse = pinStr
+            if (Kontos.count < 1)
+            {
+                return false
+            }
             let pin = Kontos[0].pin ?? [0]
             var inputPin : [Int] = []
+            print(pin)
+            print(pinStr)
             for _ in 0...3{
                 let element = pinStrToUse.prefix(1)
                 pinStrToUse.removeFirst()
                 inputPin.append(Int(element) ?? -1)
             }
-            
+            print("after")
+
             if(pin == inputPin)
             {
                 return true
@@ -48,9 +55,7 @@ struct PinAbfrage: View{
                 nextView
             }else{
                 VStack{
-                    HStack(){
-                        Text("\(pinInput)")
-                    }
+                    Text("\(pinInput)").tracking(20)
                     NumPad(useStr: $pinInput, testDone: $next, test: TestPin, appendStr: AppendStr)
                 }
             }
