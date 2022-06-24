@@ -8,6 +8,10 @@
 import SwiftUI
 import CoreData
 
+func FormatGeld(_ stand: Double)->String{
+    return String(format: "%@%.2f €", "", stand)
+}
+
 struct ContentView: View {
     @Environment(\.managedObjectContext) var viewContext
 
@@ -17,59 +21,75 @@ struct ContentView: View {
     private var items: FetchedResults<Transaktion>
     @FetchRequest(
         sortDescriptors: [])
-    private var items2: FetchedResults<Konto>
+    private var kontos: FetchedResults<Konto>
     var body: some View {
-        VStack{
-            /*Button(action:addItem){
-                Text("add Item")
-            }*/
-            NavigationView {
-                List {
-                    NavigationLink{
-                        PinAbfrage(nextView: AnyView(Auszahlung()))
-                    } label: {
-                        Text("Auszahlung")
-                    }
-                    NavigationLink{
-                        Einzahlung()
-                    } label: {
-                        Text("Einzahlung")
-                    }
-                    NavigationLink{
-                        Ueberweisung()
-                    } label: {
-                        Text("Überweisung")
-                    }
-                    NavigationLink{
-                        PinAbfrage(nextView: AnyView(Kontostand()))
-                    } label: {
-                        Text("Kontostand Abfrage")
-                    }
-                    NavigationLink{
-                        KontoAuszug()
-                    } label: {
-                        Text("Kontoauszug")
-                    }
-                    NavigationLink{
-                        PinAbfrage(nextView: AnyView(PinAendern()))
-                    } label: {
-                        Text("Pin ändern")
+        if(kontos.count > 0 && kontos[0].sperre == false){
+            VStack{
+                NavigationView {
+                    List {
+                        NavigationLink{
+                            PinAbfrage(nextView: AnyView(Auszahlung()))
+                        } label: {
+                            Text("Auszahlung")
+                        }.isDetailLink(false)
+                        NavigationLink{
+                            Einzahlung()
+                        } label: {
+                            Text("Einzahlung")
+                        }
+                        NavigationLink{
+                            Ueberweisung()
+                        } label: {
+                            Text("Überweisung")
+                        }
+                        NavigationLink{
+                            PinAbfrage(nextView: AnyView(Kontostand()))
+                        } label: {
+                            Text("Kontostand")
+                        }
+                        NavigationLink{
+                            KontoAuszug()
+                        } label: {
+                            Text("Kontoauszug")
+                        }
+                        NavigationLink{
+                            PinAbfrage(nextView: AnyView(PinAendern()))
+                        } label: {
+                            Text("Pin ändern")
+                        }
+                        NavigationLink{
+                            PinAbfrage(nextView: AnyView(KontoLoeschen()))
+                        } label: {
+                            Text("Konto Löschen")
+                        }
                     }
                 }
             }
-            /*ForEach(items){ konto in
-                Text(konto.iban!, formatter: itemFormatter)
-            }*/
+        }else{
+            VStack{
+                if(kontos.count == 0){
+                    Button(action:KontoHinzufuegen){
+                    Text("Konto Erstellen Pin: 1234")
+                    }.padding().border(.black).background(.gray).foregroundColor(.black)
+                }else{
+                Button(action:{
+                    kontos[0].sperre = false
+                }){
+                    Text("Konto entsperren")
+                }
+                }
+            }
         }
     }
 
-    private func addItem() {
+    private func KontoHinzufuegen() {
         withAnimation {
             let newItem = Konto(context: viewContext)
             newItem.pin = [1,2,3,4]
             newItem.iban = "1234567890"
             newItem.stand = 0
             newItem.dispogrenze = 400
+            newItem.sperre = false
             do {
                 try viewContext.save()
             } catch {
@@ -80,21 +100,6 @@ struct ContentView: View {
             }
         }
     }
-
-    /*private func deleteItems() {
-        withAnimation {
-            items.forEach(viewContext.delete)
-            items2.forEach(viewContext.delete)
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }*/
 }
 
 private let itemFormatter: DateFormatter = {

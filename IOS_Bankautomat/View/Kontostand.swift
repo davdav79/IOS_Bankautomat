@@ -14,7 +14,19 @@ struct Kontostand: View {
     var body: some View {
         VStack{
             Text("Kontostand")
-            Text("\(Kontos[0].stand)")
+            Text("\(FormatGeld(Kontos[0].stand))")
+                .multilineTextAlignment(.center)
+                .frame(width: UIScreen.main.bounds.width/100*50, height: 20)
+                .padding()
+                .border(.black)
+                .background(.gray)
+            Text("Dispokreditgrenze")
+            Text("\(FormatGeld(Kontos[0].dispogrenze))")
+                .multilineTextAlignment(.center)
+                .frame(width: UIScreen.main.bounds.width/100*50, height: 20)
+                .padding()
+                .border(.black)
+                .background(.gray)
         }
     }
 }

@@ -102,9 +102,9 @@ struct NumPad: View {
                 Button(action: {
                     if(test(useStr))
                     {
-                        print("num pad if")
                         testDone = true
                     }
+                    useStr = ""
                 }) {
                     Text("OK").frame(width: 80, height: 80)
                 }.background(.green)
