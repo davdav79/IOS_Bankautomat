@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AuszahlungIndividuell: View {
     @Environment(\.presentationMode) var presentationMode
+    var presentationAuszahlung: Binding<PresentationMode>
     var auszahlen: (Double)->Void
     
     @State var betragStr: String = ""
@@ -41,9 +42,12 @@ struct AuszahlungIndividuell: View {
             notify = true
             return false
         }
+        
+        presentationAuszahlung.wrappedValue.dismiss()
         presentationMode.wrappedValue.dismiss()
         auszahlen(Double(betrag))
         presentationMode.wrappedValue.dismiss()
+        presentationAuszahlung.wrappedValue.dismiss()
         return true
     }
     var body: some View {

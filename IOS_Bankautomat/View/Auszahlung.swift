@@ -54,7 +54,7 @@ struct Auszahlung: View {
                 .foregroundColor(.black)
                 .shadow(radius: 5)
             NavigationLink{
-                AuszahlungIndividuell(auszahlen: Auszahlen)
+                AuszahlungIndividuell(presentationAuszahlung: presentationMode,auszahlen: Auszahlen)
             } label: {
                 Text("Individuell")
             .frame(width: UIScreen.main.bounds.width/100*80, height: UIScreen.main.bounds.width/100*15)

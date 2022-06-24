@@ -28,20 +28,24 @@ struct KontoAuszug: View {
         return formatter.string(from: datum)
     }
     
+    func BuildOutput(tran:Transaktion) -> String{
+        var output: String = ""
+        output = tran.quelle ?? "Error"
+        output += "\n"
+        if(tran.zieliban != ""){
+            output += "\(tran.zieliban!)\n"
+        }
+        output += FormatGeld(tran.betrag)
+        output += "\n"
+        output += FormatDate(tran.timestamp ?? Date.now)
+        return output
+    }
     var body: some View {
-        VStack{
-            List{
-                ForEach((0..<transaktionen.count), id: \.self){ index in
-                    let tmp = transaktionen[index]
-                    //let time = (tmp.zieliban == nil ? "" : tmp.zieliban + "\n")
-                    var time: String = ""
-                    if(tmp.zieliban != nil){
-                        time = "\(tmp.zieliban)\n"
-                    }
-                    Text((tmp.quelle ?? "Error") + "\n" + FormatGeld(tmp.betrag) + time + "\n" + FormatDate(Date.now))
-                    
-                }
-            }
+        List{
+            ForEach((1...transaktionen.count), id: \.self){ index in
+                let tmp = transaktionen[transaktionen.count - index]
+                Text(BuildOutput(tran:tmp))
+            }            
         }
     }
 }
