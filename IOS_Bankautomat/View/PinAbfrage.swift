@@ -10,7 +10,7 @@ import SwiftUI
 struct PinAbfrage: View{
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(sortDescriptors: []) private var Kontos: FetchedResults<Konto>
+    @FetchRequest(sortDescriptors: []) private var kontos: FetchedResults<Konto>
     
     var nextView: AnyView
     @State var pinInput: String = ""
@@ -24,7 +24,7 @@ struct PinAbfrage: View{
         }
             
         var pinStrToUse = pinStr
-        let pin = Kontos[0].pin ?? [0]
+        let pin = kontos[0].pin ?? [0]
         var inputPin : [Int] = []
         for _ in 0...3{
             let element = pinStrToUse.prefix(1)
@@ -38,7 +38,7 @@ struct PinAbfrage: View{
         }else{
             sperrCnt = sperrCnt - 1
             if(sperrCnt == 0){
-                Kontos[0].sperre = true
+                kontos[0].sperre = true
                 presentationMode.wrappedValue.dismiss()
 
             }

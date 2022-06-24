@@ -24,6 +24,7 @@ struct Ueberweisung: View {
     @State var alertTxt: String = ""
     @State var alertTit: String = ""
     @State var notify: Bool = false
+    @State var enableAcceptButton = false
 
     let regexNum:String="/^(\\d+(?:[\\.\\,]\\d{2})?$/"
     
@@ -102,7 +103,7 @@ struct Ueberweisung: View {
             Ueberweisen()
         }) {
             Text("Überweisen").frame(width: UIScreen.main.bounds.width/100*80, height: UIScreen.main.bounds.width/100*15)
-        }.background(.gray)
+        }.background(zielIban == "" || empfaenger == "" || betragStr == "" ? .gray : Color.red)
             .foregroundColor(.black)
             .shadow(radius: 5)
             .disabled(zielIban == "" || empfaenger == "" || betragStr == "")
