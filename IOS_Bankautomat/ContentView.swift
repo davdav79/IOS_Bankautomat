@@ -33,12 +33,12 @@ struct ContentView: View {
                             Text("Auszahlung")
                         }
                         NavigationLink{
-                            Einzahlung()
+                            PinAbfrage(nextView: AnyView(Einzahlung()))
                         } label: {
                             Text("Einzahlung")
                         }
                         NavigationLink{
-                            Ueberweisung()
+                            PinAbfrage(nextView: AnyView(Ueberweisung()))
                         } label: {
                             Text("Überweisung")
                         }
@@ -48,7 +48,7 @@ struct ContentView: View {
                             Text("Kontostand")
                         }
                         NavigationLink{
-                            KontoAuszug()
+                            PinAbfrage(nextView: AnyView(KontoAuszug()))
                         } label: {
                             Text("Kontoauszug")
                         }
