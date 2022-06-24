@@ -34,18 +34,58 @@ struct Ueberweisung: View {
         return stringPredicate.evaluate(with:string)
     }
     func Ueberweisen(){
-                
-        if(zielIban == ""){
-            alertTxt = "Bitte IBAN angeben"
+        let filterKomma = betragStr.filter{ $0 == "," }.count
+        if(filterKomma > 1)
+        {
+            alertTxt = "Betrag enthält mehr als ein Komma"
             alertTit = "Fehler"
             notify = true
+            return
         }
+        
+        for index in 1..<zielIban.count{
+            let letter = zielIban[zielIban.index(zielIban.startIndex, offsetBy: index)]
+            
+            if(index < 2)
+            {
+                if(!(letter.isLetter))
+                {
+                    alertTxt = "IBAN falsches Format"
+                    alertTit = "Fehler"
+                    notify = true
+                    return
+                }
+            }
+            else
+            {
+                if(!(letter.isNumber))
+                {
+                    alertTxt = "IBAN falsches Format"
+                    alertTit = "Fehler"
+                    notify = true
+                    return
+                }
+            }
+        }
+        
+        betragStr = betragStr.replacingOccurrences(of: ",", with: ".")
+        
         let betrag: Double = Double(betragStr) ?? 0.0
         if(betrag == 0.0)
         {
             alertTxt = "Kein Betrag angegeben"
             alertTit = "Fehler"
             notify = true
+            betragStr = betragStr.replacingOccurrences(of: ".", with: ",")
+            return
+        }
+        
+        if(betrag < 0.0)
+        {
+            alertTxt = "Bitte Betrag größer 0 angeben"
+            alertTit = "Fehler"
+            notify = true
+            betragStr = betragStr.replacingOccurrences(of: ".", with: ",")
             return
         }
         
@@ -54,6 +94,7 @@ struct Ueberweisung: View {
             alertTxt = "Dispokreditgrenze überzogen"
             alertTit = "Fehler"
             notify = true
+            betragStr = betragStr.replacingOccurrences(of: ".", with: ",")
             return
         }
         
@@ -73,7 +114,7 @@ struct Ueberweisung: View {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
-        alertTxt = "Es wurden \(betrag) € Überwiesen\nEmpfänger: \(empfaenger)\nIBAN: \(zielIban) "
+        alertTxt = "Es wurden \(FormatGeld(betrag)) € Überwiesen\nEmpfänger: \(empfaenger)\nIBAN: \(zielIban) "
         alertTit = "Erfolg"
         notify = true
         zielIban = ""
@@ -103,7 +144,7 @@ struct Ueberweisung: View {
             Ueberweisen()
         }) {
             Text("Überweisen").frame(width: UIScreen.main.bounds.width/100*80, height: UIScreen.main.bounds.width/100*15)
-        }.background(zielIban == "" || empfaenger == "" || betragStr == "" ? .gray : Color.red)
+        }.background((zielIban != "" && empfaenger != "" && betragStr != "") ? .gray : .red)
             .foregroundColor(.black)
             .shadow(radius: 5)
             .disabled(zielIban == "" || empfaenger == "" || betragStr == "")
