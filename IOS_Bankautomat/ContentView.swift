@@ -14,7 +14,7 @@ func FormatGeld(_ stand: Double)->String{
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) var viewContext
-
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Transaktion.timestamp, ascending: true)],
         animation: .default)
@@ -22,6 +22,9 @@ struct ContentView: View {
     @FetchRequest(
         sortDescriptors: [])
     private var kontos: FetchedResults<Konto>
+    
+    @State var isAuszahlungActive : Bool = false
+    
     var body: some View {
         if(kontos.count > 0 && kontos[0].sperre == false){
             VStack{
@@ -29,9 +32,11 @@ struct ContentView: View {
                     List {
                         NavigationLink{
                             PinAbfrage(nextView: AnyView(Auszahlung()))
-                        } label: {
+                        }
+                        label: {
                             Text("Auszahlung")
                         }
+                        
                         NavigationLink{
                             PinAbfrage(nextView: AnyView(Einzahlung()))
                         } label: {
@@ -69,19 +74,19 @@ struct ContentView: View {
             VStack{
                 if(kontos.count == 0){
                     Button(action:KontoHinzufuegen){
-                    Text("Konto Erstellen Pin: 1234")
+                        Text("Konto Erstellen Pin: 1234")
                     }.padding().border(.black).background(.gray).foregroundColor(.black)
                 }else{
-                Button(action:{
-                    kontos[0].sperre = false
-                }){
-                    Text("Konto entsperren")
-                }
+                    Button(action:{
+                        kontos[0].sperre = false
+                    }){
+                        Text("Konto entsperren")
+                    }
                 }
             }
         }
     }
-
+    
     private func KontoHinzufuegen() {
         withAnimation {
             let newItem = Konto(context: viewContext)

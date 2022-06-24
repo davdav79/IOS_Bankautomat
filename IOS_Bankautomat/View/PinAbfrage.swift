@@ -40,7 +40,6 @@ struct PinAbfrage: View{
             if(sperrCnt == 0){
                 kontos[0].sperre = true
                 presentationMode.wrappedValue.dismiss()
-
             }
             return false
         }
@@ -80,11 +79,5 @@ struct PinAbfrage: View{
                 }
             }
         }
-    }
-}
-
-struct PinAbfrage_Previews: PreviewProvider {
-    static var previews: some View {
-        PinAbfrage(nextView: AnyView(Auszahlung()))
     }
 }

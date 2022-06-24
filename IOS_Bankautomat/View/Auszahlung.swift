@@ -21,50 +21,34 @@ struct Auszahlung: View {
     @State var alertTxt: String = ""
     @State var alertTit: String = ""
     @State var notify: Bool = false
+    @State var betragStr: String = ""
+    @State var individual : Bool = false
     
-    var body: some View {
-        VStack{
-        Text("Auszahlung")
-            Button(action: {
-                Auszahlen(20.0)
-            }) {
-                Text("20 €").frame(width: UIScreen.main.bounds.width/100*80, height: UIScreen.main.bounds.width/100*15)
-            }.background(.gray)
-                .foregroundColor(.black)
-                .shadow(radius: 5)
-            Button(action: {
-                Auszahlen(50.0)
-            }) {
-                Text("50 €").frame(width: UIScreen.main.bounds.width/100*80, height: UIScreen.main.bounds.width/100*15)
-            }.background(.gray)
-                .foregroundColor(.black)
-                .shadow(radius: 5)
-            Button(action: {
-                Auszahlen(80.0)
-            }) {
-                Text("80 €").frame(width: UIScreen.main.bounds.width/100*80, height: UIScreen.main.bounds.width/100*15)
-            }.background(.gray)
-                .foregroundColor(.black)
-                .shadow(radius: 5)
-            Button(action: {
-                Auszahlen(100.0)
-            }) {
-                Text("100 €").frame(width: UIScreen.main.bounds.width/100*80, height: UIScreen.main.bounds.width/100*15)
-            }.background(.gray)
-                .foregroundColor(.black)
-                .shadow(radius: 5)
-            NavigationLink{
-                AuszahlungIndividuell(presentationAuszahlung: presentationMode,auszahlen: Auszahlen)
-            } label: {
-                Text("Individuell")
-            .frame(width: UIScreen.main.bounds.width/100*80, height: UIScreen.main.bounds.width/100*15)
-        }.background(.gray)
-            .foregroundColor(.black)
-            .shadow(radius: 5)
-        }.alert(isPresented: $notify){
-            Alert(title: Text(alertTit), message: Text(alertTxt))
+    func AppendStr(number:Int, useStr: inout String) -> Void
+    {
+        if(useStr.count == 0 && number == 0){
+            return
         }
+        useStr.append(contentsOf: "\(number)")
         
+    }
+    
+    func Auszahlen(betragStr:String)->Bool{
+        let betrag: Int = Int(betragStr) ?? 0
+        if(betrag == 0){
+            alertTxt = "Mindestens 5€ einführen"
+            alertTit = "Fehler"
+            notify = true
+            return false
+        }
+        if(betrag % 5 != 0){
+            alertTxt = "Nur Geldscheine einführen"
+            alertTit = "Fehler"
+            notify = true
+            return false
+        }
+        Auszahlen(Double(betrag))
+        return true
     }
     
     private func Auszahlen(_ betrag:Double){
@@ -100,12 +84,66 @@ struct Auszahlung: View {
         presentationMode.wrappedValue.dismiss()
         return
     }
-}
-
-struct Auszahlung_Previews: PreviewProvider {
-    static var previews: some View {
-        Auszahlung()
+    
+    var body: some View {
+        if(individual)
+        {
+            VStack{
+                Text("Auszahlung Individuell")
+                Text("Betrag: \(betragStr)")
+                    .multilineTextAlignment(.center)
+                    .frame(width: UIScreen.main.bounds.width/100*50, height: 20)
+                    .padding()
+                    .border(.black)
+                    .background(.gray)
+                    .alert(isPresented: $notify){
+                        Alert(title: Text(alertTit), message: Text(alertTxt))
+                    }
+                NumPad(useStr: $betragStr, testDone: $individual, test: Auszahlen, appendStr: AppendStr)
+            }
+        }
+        else
+        {
+            VStack{
+                Text("Auszahlung")
+                Button(action: {
+                    Auszahlen(20.0)
+                }) {
+                    Text("20 €").frame(width: UIScreen.main.bounds.width/100*80, height: UIScreen.main.bounds.width/100*15)
+                }.background(.gray)
+                    .foregroundColor(.black)
+                    .shadow(radius: 5)
+                Button(action: {
+                    Auszahlen(50.0)
+                }) {
+                    Text("50 €").frame(width: UIScreen.main.bounds.width/100*80, height: UIScreen.main.bounds.width/100*15)
+                }.background(.gray)
+                    .foregroundColor(.black)
+                    .shadow(radius: 5)
+                Button(action: {
+                    Auszahlen(80.0)
+                }) {
+                    Text("80 €").frame(width: UIScreen.main.bounds.width/100*80, height: UIScreen.main.bounds.width/100*15)
+                }.background(.gray)
+                    .foregroundColor(.black)
+                    .shadow(radius: 5)
+                Button(action: {
+                    Auszahlen(100.0)
+                }) {
+                    Text("100 €").frame(width: UIScreen.main.bounds.width/100*80, height: UIScreen.main.bounds.width/100*15)
+                }.background(.gray)
+                    .foregroundColor(.black)
+                    .shadow(radius: 5)
+                Button(action: {
+                    individual = true
+                }) {
+                    Text("Individuell").frame(width: UIScreen.main.bounds.width/100*80, height: UIScreen.main.bounds.width/100*15)
+                }.background(.gray)
+                    .foregroundColor(.black)
+                    .shadow(radius: 5)
+            }.alert(isPresented: $notify){
+                Alert(title: Text(alertTit), message: Text(alertTxt))
+            }
+        }
     }
 }
-
-

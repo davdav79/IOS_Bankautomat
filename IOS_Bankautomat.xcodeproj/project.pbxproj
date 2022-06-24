@@ -17,7 +17,6 @@
 		073CA5E52861EFA700B6964C /* PinAbfrage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073CA5E42861EFA700B6964C /* PinAbfrage.swift */; };
 		07987D702865DDB000F066DE /* KontoErstellen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07987D6F2865DDB000F066DE /* KontoErstellen.swift */; };
 		07987D742865DF7A00F066DE /* KontoLoeschen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07987D732865DF7A00F066DE /* KontoLoeschen.swift */; };
-		07987D762865FBAD00F066DE /* AuszahlungIndividuell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07987D752865FBAD00F066DE /* AuszahlungIndividuell.swift */; };
 		5F2BFE83285B568400952C7E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2BFE82285B568400952C7E /* ContentView.swift */; };
 		5F2BFE85285B568600952C7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F2BFE84285B568600952C7E /* Assets.xcassets */; };
 		5F2BFE88285B568600952C7E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F2BFE87285B568600952C7E /* Preview Assets.xcassets */; };
@@ -37,7 +36,6 @@
 		073CA5E42861EFA700B6964C /* PinAbfrage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinAbfrage.swift; sourceTree = "<group>"; };
 		07987D6F2865DDB000F066DE /* KontoErstellen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KontoErstellen.swift; sourceTree = "<group>"; };
 		07987D732865DF7A00F066DE /* KontoLoeschen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KontoLoeschen.swift; sourceTree = "<group>"; };
-		07987D752865FBAD00F066DE /* AuszahlungIndividuell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuszahlungIndividuell.swift; sourceTree = "<group>"; };
 		5F2BFE7D285B568400952C7E /* IOS_Bankautomat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOS_Bankautomat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F2BFE82285B568400952C7E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5F2BFE84285B568600952C7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,7 +69,6 @@
 				5FC5FF832864961F00EF7DBC /* NumPad.swift */,
 				07987D6F2865DDB000F066DE /* KontoErstellen.swift */,
 				07987D732865DF7A00F066DE /* KontoLoeschen.swift */,
-				07987D752865FBAD00F066DE /* AuszahlungIndividuell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -191,7 +188,6 @@
 				073CA5DF2861EF7C00B6964C /* Ueberweisung.swift in Sources */,
 				073CA5E12861EF8900B6964C /* Kontostand.swift in Sources */,
 				5F2BFE8D285B568600952C7E /* IOS_Bankautomat.xcdatamodeld in Sources */,
-				07987D762865FBAD00F066DE /* AuszahlungIndividuell.swift in Sources */,
 				5F2BFE83285B568400952C7E /* ContentView.swift in Sources */,
 				073CA5DD2861EF5D00B6964C /* PinAendern.swift in Sources */,
 				073CA5E52861EFA700B6964C /* PinAbfrage.swift in Sources */,
