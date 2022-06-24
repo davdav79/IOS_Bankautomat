@@ -23,7 +23,6 @@ struct PinAbfrage: View{
             return false
         }
             
-            
         var pinStrToUse = pinStr
         let pin = Kontos[0].pin ?? [0]
         var inputPin : [Int] = []
@@ -41,6 +40,7 @@ struct PinAbfrage: View{
             if(sperrCnt == 0){
                 Kontos[0].sperre = true
                 presentationMode.wrappedValue.dismiss()
+
             }
             return false
         }
@@ -68,7 +68,7 @@ struct PinAbfrage: View{
             if(next){
                 nextView
             }else{
-                VStack{
+                VStack{		
                     if(sperrCnt < 3){
                         Text("Falsche Pin. \(sperrCnt) Versuche verbleiben").frame(width: UIScreen.main.bounds.width/100*80, height: 20).padding().foregroundColor(.red)
                     }else{

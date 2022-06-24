@@ -31,7 +31,7 @@ struct ContentView: View {
                             PinAbfrage(nextView: AnyView(Auszahlung()))
                         } label: {
                             Text("Auszahlung")
-                        }.isDetailLink(false)
+                        }
                         NavigationLink{
                             Einzahlung()
                         } label: {
