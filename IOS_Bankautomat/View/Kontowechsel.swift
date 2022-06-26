@@ -21,7 +21,7 @@ struct KontoWechsel: View {
     func NeuesKonto(){
         //aktuKonto = kontos
         let newItem = Konto(context: viewContext)
-        newItem.pin = [1,1,1,1]//[Int.random(in: 0...9),Int.random(in: 0...9),Int.random(in: 0...9),Int.random(in: 0...9)]
+        newItem.pin = [Int.random(in: 0...9),Int.random(in: 0...9),Int.random(in: 0...9),Int.random(in: 0...9)]
         newItem.iban = "DE" + String(Int.random(in: 1_000_000_000...9_999_999_999))
         newItem.stand = 0
         newItem.dispogrenze = 400
