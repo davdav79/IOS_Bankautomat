@@ -39,6 +39,15 @@ struct Ueberweisung: View {
             notify = true
             return
         }
+        
+        if(zielIban == aktuKonto.iban)
+        {
+            alertTxt = "Überweisung auf von und zu eigenem Konto nicht möglich."
+            alertTit = "Fehler"
+            notify = true
+            return
+        }
+        
         //check iban Format
         for index in 1..<zielIban.count{
             let letter = zielIban[zielIban.index(zielIban.startIndex, offsetBy: index)]
@@ -143,7 +152,7 @@ struct Ueberweisung: View {
     }
     
     var body: some View {
-        Text("Ueberweisung")
+        Text("Überweisung").padding().font(.largeTitle)
         Form{
             Text("IBAN")
             TextField(text: $zielIban){
@@ -163,7 +172,7 @@ struct Ueberweisung: View {
         Button(action: {
             Ueberweisen()
         }) {
-            Text("Überweisen").frame(width: UIScreen.main.bounds.width/100*80, height: UIScreen.main.bounds.width/100*15).padding().font(.largeTitle)
+            Text("Überweisen").frame(width: UIScreen.main.bounds.width/100*80, height: UIScreen.main.bounds.width/100*15)
         }.background((zielIban != "" && empfaenger != "" && betragStr != "") ? .gray : .red)
             .foregroundColor(.black)
             .shadow(radius: 5)

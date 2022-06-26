@@ -17,6 +17,7 @@ struct PinAbfrage: View{
     @State var next = false
     @State var sperrCnt = 3
     @Binding var aktuKonto:Konto
+    @Binding var kontoCheck : Bool
     
     func TestPin (pinStr:String) -> Bool{
         if(pinStr.count != 4)
@@ -40,13 +41,17 @@ struct PinAbfrage: View{
             sperrCnt = sperrCnt - 1
             if(sperrCnt == 0){
                 aktuKonto.sperre = true
-                presentationMode.wrappedValue.dismiss()
+                kontoCheck = false
+                do {
+                    try viewContext.save()
+                } catch {
+                    let nsError = error as NSError
+                    //fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                    print("ERROR: Save in Abfrage versursachte Fehler\n\(nsError), \(nsError.userInfo)")
+                }
             }
             return false
         }
-        
-        
-        
     }
     
     func AppendStr(number:Int, useStr: inout String) -> Void

@@ -25,64 +25,70 @@ struct ContentView: View {
     
     @State var aktuKonto: Konto = Konto()
     @State var isAuszahlungActive : Bool = false
-    @State var initCheck:Bool = false
+    @State var kontoCheck:Bool = false
     
     var body: some View {
-        if(kontos.count > 0 && initCheck == true) {
-            if(kontos[0].sperre == false){
+        if(kontos.count > 0 && kontoCheck == true) {
+            if(aktuKonto.sperre == false){
                 VStack{
                     NavigationView {
+                        VStack{
+                        Text("Konto: " + (aktuKonto.iban ?? "")).padding().font(.largeTitle)
                         List {
                             NavigationLink{
-                                PinAbfrage(nextView: AnyView(Auszahlung(aktuKonto: $aktuKonto)), aktuKonto: $aktuKonto)
+                                PinAbfrage(nextView: AnyView(Auszahlung(aktuKonto: $aktuKonto)), aktuKonto: $aktuKonto, kontoCheck: $kontoCheck)
                             }
                             label: {
                                 Text("Auszahlung")
                             }
                             
                             NavigationLink{
-                                PinAbfrage(nextView: AnyView(Einzahlung(aktuKonto: $aktuKonto)), aktuKonto: $aktuKonto)
+                                PinAbfrage(nextView: AnyView(Einzahlung(aktuKonto: $aktuKonto)), aktuKonto: $aktuKonto, kontoCheck: $kontoCheck)
                             } label: {
                                 Text("Einzahlung")
                             }
                             NavigationLink{
-                                PinAbfrage(nextView: AnyView(Ueberweisung(aktuKonto: $aktuKonto)), aktuKonto: $aktuKonto)
+                                PinAbfrage(nextView: AnyView(Ueberweisung(aktuKonto: $aktuKonto)), aktuKonto: $aktuKonto, kontoCheck: $kontoCheck)
                             } label: {
                                 Text("Überweisung")
                             }
                             NavigationLink{
-                                PinAbfrage(nextView: AnyView(Kontostand(aktuKonto: $aktuKonto)), aktuKonto: $aktuKonto)
+                                PinAbfrage(nextView: AnyView(Kontostand(aktuKonto: $aktuKonto)), aktuKonto: $aktuKonto, kontoCheck: $kontoCheck)
                             } label: {
                                 Text("Kontostand")
                             }
                             NavigationLink{
-                                PinAbfrage(nextView: AnyView(KontoAuszug(aktuKonto: $aktuKonto)), aktuKonto: $aktuKonto)
+                                PinAbfrage(nextView: AnyView(KontoAuszug(aktuKonto: $aktuKonto)), aktuKonto: $aktuKonto, kontoCheck: $kontoCheck)
                             } label: {
                                 Text("Kontoauszug")
                             }
                             NavigationLink{
-                                PinAbfrage(nextView: AnyView(PinAendern(aktuKonto: $aktuKonto)), aktuKonto: $aktuKonto)
+                                PinAbfrage(nextView: AnyView(PinAendern(aktuKonto: $aktuKonto)), aktuKonto: $aktuKonto, kontoCheck: $kontoCheck)
                             } label: {
                                 Text("Pin ändern")
                             }
                             NavigationLink{
-                                PinAbfrage(nextView: AnyView(KontoLoeschen(aktuKonto: $aktuKonto)), aktuKonto: $aktuKonto)
+                                PinAbfrage(nextView: AnyView(KontoLoeschen(aktuKonto: $aktuKonto)), aktuKonto: $aktuKonto, kontoCheck: $kontoCheck)
                             } label: {
                                 Text("Konto Löschen")
                             }
                             NavigationLink{
-                                KontoWechsel(aktuKonto: $aktuKonto,initCheck: $initCheck)
+                                KontoWechsel(aktuKonto: $aktuKonto, kontoCheck: $kontoCheck)
                             } label: {
                                 Text("Kontowechsel")
                             }
+                        }
                             
                         }
                     }
                 }
-                
+            }
+            else
+            {
+                KontoWechsel(aktuKonto: $aktuKonto, kontoCheck: $kontoCheck)
             }
         }else{
-            KontoWechsel(aktuKonto: $aktuKonto, initCheck: $initCheck)
+            KontoWechsel(aktuKonto: $aktuKonto, kontoCheck: $kontoCheck)
         }
     }
     
