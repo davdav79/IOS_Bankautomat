@@ -68,7 +68,7 @@ struct ContentView: View {
                                 Text("Pin ändern")
                             }
                             NavigationLink{
-                                PinAbfrage(nextView: AnyView(KontoLoeschen(aktuKonto: $aktuKonto)), aktuKonto: $aktuKonto, kontoCheck: $kontoCheck)
+                                PinAbfrage(nextView: AnyView(KontoLoeschen(aktuKonto: $aktuKonto, kontoCheck: $kontoCheck)), aktuKonto: $aktuKonto, kontoCheck: $kontoCheck)
                             } label: {
                                 Text("Konto Löschen")
                             }

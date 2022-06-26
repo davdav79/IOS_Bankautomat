@@ -18,6 +18,7 @@ struct KontoLoeschen: View {
         sortDescriptors: [])
     private var kontos: FetchedResults<Konto>
     @Binding var aktuKonto:Konto
+    @Binding var kontoCheck:Bool
     @State var alertTit = ""
     @State var alertTxt = ""
     @State var notify = false
@@ -36,6 +37,9 @@ struct KontoLoeschen: View {
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
         notify = true
+        if(kontos.count == 0){
+            kontoCheck = false
+        }
         presentationMode.wrappedValue.dismiss()
     }
     

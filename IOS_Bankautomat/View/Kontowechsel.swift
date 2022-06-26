@@ -21,7 +21,6 @@ struct KontoWechsel: View {
     @Binding var kontoCheck:Bool
     
     func NeuesKonto(){
-        //aktuKonto = kontos
         let newItem = Konto(context: viewContext)
         newItem.pin = [Int.random(in: 0...9),Int.random(in: 0...9),Int.random(in: 0...9),Int.random(in: 0...9)]//[1,1,1,1]
         newItem.iban = "DE" + String(Int.random(in: 1_000_000_000...9_999_999_999))
@@ -48,8 +47,6 @@ struct KontoWechsel: View {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
-        
-        presentationMode.wrappedValue.dismiss()
     }
     
     @FetchRequest(
