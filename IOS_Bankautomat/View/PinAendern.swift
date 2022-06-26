@@ -56,7 +56,7 @@ struct PinAendern: View {
     
     var body: some View {
         VStack{
-            Text("Bitte geben Sie jetzt die neue Pin ein.").frame(width: UIScreen.main.bounds.width/100*80, height: 20).padding()
+            Text("Neue Pin").frame(width: UIScreen.main.bounds.width/100*80, height: 20).padding().font(.largeTitle)
             Text("\(useStr)").tracking(20).multilineTextAlignment(.center).frame(width: UIScreen.main.bounds.width/100*50, height: 20)
                 .padding()
                 .border(.black)
@@ -66,6 +66,7 @@ struct PinAendern: View {
     }
             NumPad(useStr: $useStr, testDone: $testDone, test: TestNewPin, appendStr: AppendStr)
         }
+        Spacer()
     }
 }
 

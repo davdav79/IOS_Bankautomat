@@ -43,7 +43,7 @@ struct KontoLoeschen: View {
     
     var body: some View {
         VStack{
-            Text("Konto löschen")
+            Text("Konto löschen").padding().font(.largeTitle)
             List{
                 Text("ID: \(aktuKonto.id)")
                 Text("IBAN: " + (aktuKonto.iban ?? ""))
@@ -53,8 +53,8 @@ struct KontoLoeschen: View {
             }.padding().border(.black).background(.red).foregroundColor(.black)
                 .alert(isPresented: $notify){
                 Alert(title: Text(alertTit), message: Text(alertTxt))}.padding()
-            
         }
+        Spacer()
     }
     
     

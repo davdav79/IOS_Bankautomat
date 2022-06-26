@@ -91,7 +91,7 @@ struct Auszahlung: View {
         if(individual)
         {
             VStack{
-                Text("Auszahlung Individuell")
+                Text("Auszahlung Individuell").font(.largeTitle).padding()
                 Text("Betrag: \(betragStr)")
                     .multilineTextAlignment(.center)
                     .frame(width: UIScreen.main.bounds.width/100*50, height: 20)
@@ -102,13 +102,13 @@ struct Auszahlung: View {
                         Alert(title: Text(alertTit), message: Text(alertTxt))
                     }
                 NumPad(useStr: $betragStr, testDone: $individual, test: Auszahlen, appendStr: AppendStr)
+                Spacer()
             }
         }
         else
         {
-            Text("Auszahlung")
+            Text("Auszahlung").font(.largeTitle).padding()
             List{
-                
                 Button(action: {
                     Auszahlen(20.0)
                 }) {
@@ -147,6 +147,7 @@ struct Auszahlung: View {
             }.alert(isPresented: $notify){
                 Alert(title: Text(alertTit), message: Text(alertTxt))
             }
+            Spacer()
         }
     }
 }

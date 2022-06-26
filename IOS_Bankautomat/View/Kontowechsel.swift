@@ -70,7 +70,7 @@ struct KontoWechsel: View {
         
     }
     var body: some View {
-        Text("Kontowechsel")
+        Text("Kontowechsel").padding().font(.largeTitle)
         Button(action:DeleteAll){
             Text("delete all")
         }
@@ -98,6 +98,7 @@ struct KontoWechsel: View {
                 }
             }
         }.navigationBarBackButtonHidden(true)
+        Spacer()
     }
 }
 

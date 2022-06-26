@@ -14,14 +14,14 @@ struct Kontostand: View {
     
     var body: some View {
         VStack{
-            Text("Kontostand")
+            Text("Kontostand").padding().font(.largeTitle)
             Text("\(FormatGeld(aktuKonto.stand))")
                 .multilineTextAlignment(.center)
                 .frame(width: UIScreen.main.bounds.width/100*50, height: 20)
                 .padding()
                 .border(.black)
                 .background(.gray)
-            Text("Dispokreditgrenze")
+            Text("Dispokreditgrenze").padding().font(.title2)
             Text("\(FormatGeld(aktuKonto.dispogrenze))")
                 .multilineTextAlignment(.center)
                 .frame(width: UIScreen.main.bounds.width/100*50, height: 20)
@@ -29,5 +29,6 @@ struct Kontostand: View {
                 .border(.black)
                 .background(.gray)
         }
+        Spacer()
     }
 }

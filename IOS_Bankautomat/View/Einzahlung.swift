@@ -74,7 +74,6 @@ struct Einzahlung: View {
     var body: some View {
         VStack{
             Text("Einzahlung").frame(width: UIScreen.main.bounds.width/100*80, height: 20).padding().font(.largeTitle)
-            List(){
             Text("Betrag: \(betragStr)")
                     .multilineTextAlignment(.center)
                     .frame(width: UIScreen.main.bounds.width/100*50, height: 20)
@@ -83,9 +82,8 @@ struct Einzahlung: View {
             .background(.gray)
             .alert(isPresented: $notify){
                 Alert(title: Text(alertTit), message: Text(alertTxt))}
-        NumPad(useStr: $betragStr, testDone: $next, test:Einzahlen , appendStr: AppendStr)
-            }.frame(alignment: .center)
-            
+            NumPad(useStr: $betragStr, testDone: $next, test:Einzahlen , appendStr: AppendStr)
         }
+        Spacer()
     }
 }

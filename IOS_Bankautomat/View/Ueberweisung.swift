@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Ueberweisung: View {
     @Environment(\.managedObjectContext) var viewContext
-
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Transaktion.timestamp, ascending: true)],
         animation: .default)
@@ -159,17 +159,19 @@ struct Ueberweisung: View {
             }.disableAutocorrection(true)
                 .keyboardType(.decimalPad)
             
-    }
+        }
         Button(action: {
             Ueberweisen()
         }) {
-            Text("Überweisen").frame(width: UIScreen.main.bounds.width/100*80, height: UIScreen.main.bounds.width/100*15)
+            Text("Überweisen").frame(width: UIScreen.main.bounds.width/100*80, height: UIScreen.main.bounds.width/100*15).padding().font(.largeTitle)
         }.background((zielIban != "" && empfaenger != "" && betragStr != "") ? .gray : .red)
             .foregroundColor(.black)
             .shadow(radius: 5)
             .disabled(zielIban == "" || empfaenger == "" || betragStr == "")
             .alert(isPresented: $notify){
-                Alert(title: Text(alertTit), message: Text(alertTxt))}
+                Alert(title: Text(alertTit), message: Text(alertTxt))
+            }
+        Spacer()
     }
     
 }

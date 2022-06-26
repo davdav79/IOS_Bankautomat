@@ -42,7 +42,7 @@ struct KontoAuszug: View {
         return output
     }
     var body: some View {
-        Text("Kontoauszug")
+        Text("Kontoauszug").padding().font(.largeTitle)
         List{
             if(transaktionen.count > 0){
                 ForEach((1...transaktionen.count), id: \.self){ index in
@@ -53,5 +53,6 @@ struct KontoAuszug: View {
                 }
             }
         }
+        Spacer()
     }
 }

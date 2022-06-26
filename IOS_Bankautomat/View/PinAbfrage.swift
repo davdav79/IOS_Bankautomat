@@ -17,13 +17,13 @@ struct PinAbfrage: View{
     @State var next = false
     @State var sperrCnt = 3
     @Binding var aktuKonto:Konto
-
+    
     func TestPin (pinStr:String) -> Bool{
         if(pinStr.count != 4)
         {
             return false
         }
-            
+        
         var pinStrToUse = pinStr
         let pin = aktuKonto.pin ?? [0]
         var inputPin : [Int] = []
@@ -44,7 +44,7 @@ struct PinAbfrage: View{
             }
             return false
         }
-            
+        
         
         
     }
@@ -68,16 +68,21 @@ struct PinAbfrage: View{
             if(next){
                 nextView
             }else{
-                VStack{		
+                VStack{
+                    Text("Bitte Pin eingeben").frame(width: UIScreen.main.bounds.width/100*80, height: 20)
+                        .padding()
+                        .font(.largeTitle)
                     if(sperrCnt < 3){
-                        Text("Falsche Pin. \(sperrCnt) Versuche verbleiben").frame(width: UIScreen.main.bounds.width/100*80, height: 20).padding().foregroundColor(.red)
-                    }else{
-                        Text("Bitte Pin eingeben").frame(width: UIScreen.main.bounds.width/100*80, height: 20).padding()
+                        Text("\(sperrCnt) Versuche übrig").frame(width: UIScreen.main.bounds.width/100*80, height: 20)
+                            .padding()
+                            .font(.title2)
+                            .foregroundColor(.red)
                     }
                     Text("\(HideStr(input:pinInput))").tracking(20).multilineTextAlignment(.center).frame(width: UIScreen.main.bounds.width/100*50, height: 20).padding().border(.black).background(.gray)
                     
                     NumPad(useStr: $pinInput, testDone: $next, test: TestPin, appendStr: AppendStr)
                 }
+                Spacer()
             }
         }
     }
