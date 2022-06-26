@@ -120,7 +120,7 @@ struct Ueberweisung: View {
         let newTransactionSend = Transaktion(context: viewContext)
         newTransactionSend.betrag = betrag
         newTransactionSend.timestamp = Date.now
-        newTransactionSend.quelle = "Überwisung Eingehend"
+        newTransactionSend.quelle = "Überweisung Eingehend"
         newTransactionSend.zieliban = zielIban
         newTransactionSend.konto = zielKonto.id
         

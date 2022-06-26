@@ -106,8 +106,9 @@ struct Auszahlung: View {
         }
         else
         {
-            VStack{
-                Text("Auszahlung")
+            Text("Auszahlung")
+            List{
+                
                 Button(action: {
                     Auszahlen(20.0)
                 }) {

@@ -43,6 +43,11 @@ struct KontoLoeschen: View {
     
     var body: some View {
         VStack{
+            Text("Konto löschen")
+            List{
+                Text("ID: \(aktuKonto.id)")
+                Text("IBAN: " + (aktuKonto.iban ?? ""))
+            }
             Button(action: KontoLoeschen){
                 Text("Konto löschen")
             }.padding().border(.black).background(.red).foregroundColor(.black)
