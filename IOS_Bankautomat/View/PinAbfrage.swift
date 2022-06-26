@@ -16,7 +16,8 @@ struct PinAbfrage: View{
     @State var pinInput: String = ""
     @State var next = false
     @State var sperrCnt = 3
-    
+    @Binding var aktuKonto:Konto
+
     func TestPin (pinStr:String) -> Bool{
         if(pinStr.count != 4)
         {
@@ -24,7 +25,7 @@ struct PinAbfrage: View{
         }
             
         var pinStrToUse = pinStr
-        let pin = kontos[0].pin ?? [0]
+        let pin = aktuKonto.pin ?? [0]
         var inputPin : [Int] = []
         for _ in 0...3{
             let element = pinStrToUse.prefix(1)
@@ -38,7 +39,7 @@ struct PinAbfrage: View{
         }else{
             sperrCnt = sperrCnt - 1
             if(sperrCnt == 0){
-                kontos[0].sperre = true
+                aktuKonto.sperre = true
                 presentationMode.wrappedValue.dismiss()
             }
             return false

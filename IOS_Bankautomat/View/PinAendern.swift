@@ -14,6 +14,7 @@ struct PinAendern: View {
     @State var useStr : String = ""
     @State var testDone : Bool = false
     @State var notify : Bool = false
+    @Binding var aktuKonto:Konto
     
     func TestNewPin(useStr: String) -> Bool{
         if(useStr.count == 4)
@@ -30,8 +31,7 @@ struct PinAendern: View {
                 inputPin.append(num)
             }
             
-            // ToDo: Save new Pin.
-            Kontos[0].pin = inputPin
+            aktuKonto.pin = inputPin
             do {
                 try viewContext.save()
             } catch {
@@ -69,8 +69,3 @@ struct PinAendern: View {
     }
 }
 
-struct PinAendern_Previews: PreviewProvider {
-    static var previews: some View {
-        PinAendern()
-    }
-}

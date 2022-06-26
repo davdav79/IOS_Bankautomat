@@ -25,15 +25,12 @@ struct Ueberweisung: View {
     @State var alertTit: String = ""
     @State var notify: Bool = false
     @State var enableAcceptButton = false
-
-    let regexNum:String="/^(\\d+(?:[\\.\\,]\\d{2})?$/"
+    @Binding var aktuKonto:Konto
     
-    func Regex(_ string:String, format:String) -> Bool{
-        let stringPredicate = NSPredicate(format: "SELF MATCHES %@", format)
-        print(stringPredicate.evaluate(with: string))
-        return stringPredicate.evaluate(with:string)
-    }
     func Ueberweisen(){
+        var zielKonto:Konto = Konto()
+        
+        //check Betrag foramt
         let filterKomma = betragStr.filter{ $0 == "," }.count
         if(filterKomma > 1)
         {
@@ -42,7 +39,7 @@ struct Ueberweisung: View {
             notify = true
             return
         }
-        
+        //check iban Format
         for index in 1..<zielIban.count{
             let letter = zielIban[zielIban.index(zielIban.startIndex, offsetBy: index)]
             
@@ -89,7 +86,7 @@ struct Ueberweisung: View {
             return
         }
         
-        if(kontos[0].stand + kontos[0].dispogrenze < betrag)
+        if(aktuKonto.stand + aktuKonto.dispogrenze < betrag)
         {
             alertTxt = "Dispokreditgrenze überzogen"
             alertTit = "Fehler"
@@ -97,14 +94,37 @@ struct Ueberweisung: View {
             betragStr = betragStr.replacingOccurrences(of: ".", with: ",")
             return
         }
-        
+        print(zielKonto)
+        //check if target konto exists
+        var foundKonto = false
+        kontos.forEach{ konto in
+            if(konto.iban == zielIban){
+                zielKonto = konto
+                foundKonto = true
+            }
+        }
+        if(foundKonto == false){
+            alertTxt = "IBAN existiert nicht"
+            alertTit = "Fehler"
+            notify = true
+            return
+        }
         let newTransaction = Transaktion(context: viewContext)
-        newTransaction.betrag = betrag
+        newTransaction.betrag = -betrag
         newTransaction.timestamp = Date.now
-        newTransaction.quelle = "Überweisung"
+        newTransaction.quelle = "Überweisung Ausgehen"
         newTransaction.zieliban = zielIban
+        newTransaction.konto = aktuKonto.id
+        aktuKonto.stand -= betrag
         
-        kontos[0].stand -= betrag
+        let newTransactionSend = Transaktion(context: viewContext)
+        newTransactionSend.betrag = betrag
+        newTransactionSend.timestamp = Date.now
+        newTransactionSend.quelle = "Überwisung Eingehend"
+        newTransactionSend.zieliban = zielIban
+        newTransactionSend.konto = zielKonto.id
+        
+        zielKonto.stand += betrag
         
         do {
             try viewContext.save()
@@ -114,7 +134,7 @@ struct Ueberweisung: View {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
-        alertTxt = "Es wurden \(FormatGeld(betrag)) € Überwiesen\nEmpfänger: \(empfaenger)\nIBAN: \(zielIban) "
+        alertTxt = "Es wurden \(FormatGeld(betrag)) Überwiesen\nEmpfänger: \(empfaenger)\nIBAN: \(zielIban) "
         alertTit = "Erfolg"
         notify = true
         zielIban = ""
@@ -152,10 +172,4 @@ struct Ueberweisung: View {
                 Alert(title: Text(alertTit), message: Text(alertTxt))}
     }
     
-}
-
-struct Ueberweisung_Previews: PreviewProvider {
-    static var previews: some View {
-        Ueberweisung()
-    }
 }

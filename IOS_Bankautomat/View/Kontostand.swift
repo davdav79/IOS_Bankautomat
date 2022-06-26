@@ -10,29 +10,24 @@ import SwiftUI
 struct Kontostand: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: []) private var Kontos: FetchedResults<Konto>
+    @Binding var aktuKonto:Konto
     
     var body: some View {
         VStack{
             Text("Kontostand")
-            Text("\(FormatGeld(Kontos[0].stand))")
+            Text("\(FormatGeld(aktuKonto.stand))")
                 .multilineTextAlignment(.center)
                 .frame(width: UIScreen.main.bounds.width/100*50, height: 20)
                 .padding()
                 .border(.black)
                 .background(.gray)
             Text("Dispokreditgrenze")
-            Text("\(FormatGeld(Kontos[0].dispogrenze))")
+            Text("\(FormatGeld(aktuKonto.dispogrenze))")
                 .multilineTextAlignment(.center)
                 .frame(width: UIScreen.main.bounds.width/100*50, height: 20)
                 .padding()
                 .border(.black)
                 .background(.gray)
         }
-    }
-}
-
-struct Kontostand_Previews: PreviewProvider {
-    static var previews: some View {
-        Kontostand()
     }
 }

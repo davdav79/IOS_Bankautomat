@@ -24,6 +24,8 @@ struct Einzahlung: View {
     @State var alertTxt: String = ""
     @State var alertTit: String = ""
     @State var notify: Bool = false
+    @Binding var aktuKonto:Konto
+    
     func Einzahlen(betragStr: String) -> Bool{
         let betrag: Int = Int(betragStr) ?? 0
         if(betrag == 0){
@@ -43,8 +45,9 @@ struct Einzahlung: View {
         newTransaction.timestamp = Date.now
         newTransaction.quelle = "Einzahlung"
         newTransaction.zieliban = ""
+        newTransaction.konto = Int64(aktuKonto.id)
         
-        kontos[0].stand += Double(betrag)
+        aktuKonto.stand += Double(betrag)
         
         do {
             try viewContext.save()
@@ -70,7 +73,7 @@ struct Einzahlung: View {
     }
     var body: some View {
         VStack{
-            Text("Einzahlung")
+            Text("Einzahlung").frame(width: UIScreen.main.bounds.width/100*80, height: 20).padding()
             Text("Betrag: \(betragStr)")
                 .multilineTextAlignment(.center)
                 .frame(width: UIScreen.main.bounds.width/100*50, height: 20)
@@ -81,11 +84,5 @@ struct Einzahlung: View {
                     Alert(title: Text(alertTit), message: Text(alertTxt))}
             NumPad(useStr: $betragStr, testDone: $next, test:Einzahlen , appendStr: AppendStr)
         }
-    }
-}
-
-struct Einzahlung_Previews: PreviewProvider {
-    static var previews: some View {
-        Einzahlung()
     }
 }

@@ -23,6 +23,7 @@ struct Auszahlung: View {
     @State var notify: Bool = false
     @State var betragStr: String = ""
     @State var individual : Bool = false
+    @Binding var aktuKonto:Konto
     
     func AppendStr(number:Int, useStr: inout String) -> Void
     {
@@ -53,7 +54,7 @@ struct Auszahlung: View {
     
     private func Auszahlen(_ betrag:Double){
         
-        if(kontos[0].stand + kontos[0].dispogrenze < betrag)
+        if(aktuKonto.stand + aktuKonto.dispogrenze < betrag)
         {
             alertTxt = "Dispokreditgrenze überzogen"
             alertTit = "Fehler"
@@ -65,11 +66,12 @@ struct Auszahlung: View {
         newTransaction.timestamp = Date.now
         newTransaction.quelle = "Auszahlung"
         newTransaction.zieliban = ""
+        newTransaction.konto = Int64(aktuKonto.id)
         
-        kontos[0].stand -= betrag
+        aktuKonto.stand -= betrag
         
         
-        alertTxt = "\(FormatGeld(betrag)) abgehoben.\n Neuer Kontostand: \(FormatGeld(kontos[0].stand)) "
+        alertTxt = "\(FormatGeld(betrag)) abgehoben.\n Neuer Kontostand: \(FormatGeld(aktuKonto.stand)) "
         alertTit = "Erfolg"
         notify = true
         

@@ -17,6 +17,7 @@ struct KontoAuszug: View {
         sortDescriptors: [])
     private var kontos: FetchedResults<Konto>
     
+    @Binding var aktuKonto:Konto
     private struct Trans: Identifiable {
         let betrag: Double
         let id = UUID()
@@ -41,17 +42,16 @@ struct KontoAuszug: View {
         return output
     }
     var body: some View {
+        Text("Kontoauszug")
         List{
-            ForEach((1...transaktionen.count), id: \.self){ index in
-                let tmp = transaktionen[transaktionen.count - index]
-                Text(BuildOutput(tran:tmp))
-            }            
+            if(transaktionen.count > 0){
+                ForEach((1...transaktionen.count), id: \.self){ index in
+                    if(transaktionen[transaktionen.count - index].konto == aktuKonto.id){
+                        let tmp = transaktionen[transaktionen.count - index]
+                        Text(BuildOutput(tran:tmp))
+                    }
+                }
+            }
         }
-    }
-}
-
-struct KontoAuszug_Previews: PreviewProvider {
-    static var previews: some View {
-        KontoAuszug()
     }
 }
